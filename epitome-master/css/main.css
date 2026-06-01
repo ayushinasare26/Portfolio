@@ -1927,7 +1927,7 @@ input::-moz-focus-inner {
   background-color: #02182c;
   background-repeat: no-repeat;
   background-position: top center;
-  background-image: url(../images/hero-pic.jpg);
+  background-image: url(../images/hero-pic.jpeg);
   background-size: cover;
   position: absolute;
   top: 20%;
@@ -4260,4 +4260,121 @@ p, h1, h2, h3, h4, h5, h6, .section-desc, .item-title {
   .footer-connect {
     margin-bottom: 3rem;
   }
+}
+
+
+/* Skills Section - Solid Black Background */
+.s-services {
+  background-image: none !important;
+  background-color: #000000 !important;
+}
+
+.s-services::before {
+  display: none !important;
+}
+
+.s-services .shadow-overlay {
+  display: none !important;
+}
+
+
+/* Projects Section - Solid Black Background */
+.s-works {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+.s-works .section-heading,
+.s-works .section-desc {
+  color: #ffffff !important;
+}
+
+.item-project__content {
+  background-color: #1a1a1a !important;
+  border: 2px solid #333333;
+  border-radius: 8px;
+  padding: 3rem;
+  transition: all 0.3s ease;
+}
+
+.item-project__content:hover {
+  border-color: #cf1767;
+  transform: translateY(-5px);
+}
+
+.item-project__title {
+  color: #ffffff !important;
+}
+
+.item-project__desc {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.project-tag {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.item-project__link {
+  color: #cf1767 !important;
+  border-bottom: 2px solid #cf1767 !important;
+}
+
+.item-project__link:hover {
+  color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+}
+
+
+/* Starry Background Effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 50px 50px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, white, transparent),
+    radial-gradient(2px 2px at 90px 10px, white, transparent),
+    radial-gradient(1px 1px at 150px 120px, white, transparent),
+    radial-gradient(1px 1px at 200px 40px, white, transparent),
+    radial-gradient(2px 2px at 170px 150px, white, transparent),
+    radial-gradient(1px 1px at 240px 90px, white, transparent),
+    radial-gradient(1px 1px at 280px 20px, white, transparent),
+    radial-gradient(2px 2px at 320px 110px, white, transparent),
+    radial-gradient(1px 1px at 360px 60px, white, transparent),
+    radial-gradient(1px 1px at 100px 140px, white, transparent),
+    radial-gradient(2px 2px at 40px 100px, white, transparent),
+    radial-gradient(1px 1px at 180px 30px, white, transparent);
+  background-size: 400px 200px;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Ensure content stays above stars */
+section {
+  position: relative;
+  z-index: 1;
 }
