@@ -4378,3 +4378,303 @@ section {
   position: relative;
   z-index: 1;
 }
+
+
+/* Vertical Right-Side Navigation */
+.s-header {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0.5rem !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  transform: translateY(-50%) !important;
+  background-color: transparent !important;
+  text-align: right !important;
+  z-index: 100 !important;
+}
+
+.header-nav-wrap {
+  display: block !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  padding: 2.5rem 1.5rem !important;
+  border-radius: 12px !important;
+  border: 2px solid #333333 !important;
+  backdrop-filter: blur(10px) !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+  overflow: hidden !important;
+}
+
+.header-nav-wrap ul {
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  gap: 1.8rem !important;
+}
+
+.header-main-nav {
+  position: static !important;
+  margin: 0 !important;
+}
+
+.header-main-nav li {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.header-main-nav li a {
+  display: block !important;
+  padding: 1.2rem 1rem !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.15rem !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+}
+
+.header-main-nav li a:hover,
+.header-main-nav .current a {
+  background-color: #cf1767 !important;
+  color: #ffffff !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 3px 12px rgba(207, 23, 103, 0.3) !important;
+}
+
+.header-logo,
+.header-social {
+  display: none !important;
+}
+
+.header-menu-toggle {
+  display: none !important;
+}
+
+/* Mobile - Keep hamburger menu */
+@media screen and (max-width:800px) {
+  .s-header {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 78px !important;
+    transform: none !important;
+    background-color: #000000 !important;
+    text-align: center !important;
+  }
+
+  .header-nav-wrap {
+    display: none !important;
+    position: fixed !important;
+    top: 78px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: #000000 !important;
+    padding: 4rem 2rem !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  .header-nav-wrap.is-visible {
+    display: block !important;
+  }
+
+  .header-menu-toggle {
+    display: block !important;
+    position: absolute !important;
+    right: 2rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .header-main-nav li a:hover,
+  .header-main-nav .current a {
+    transform: none !important;
+  }
+}
+
+
+/* Rounded corners for hero image */
+.intro-pic {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+
+/* Pink color for scroll text */
+.intro-scroll a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color 0.3s ease !important;
+}
+
+.intro-scroll a:hover {
+  color: #cf1767 !important;
+}
+
+
+/* Pink color for subtitle */
+.intro-text h3 {
+  color: #cf1767 !important;
+}
+
+
+/* Match text styling across About section */
+.about-me__text p,
+.about-me__text p.lead {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: normal !important;
+  color: #ffffff !important;
+}
+
+
+/* Education and Experience Timeline Text Styling */
+.timeline__header h3.item-title {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  color: #ffffff !important;
+  letter-spacing: normal !important;
+}
+
+.timeline__timeframe {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #ffffff !important;
+  letter-spacing: normal !important;
+}
+
+.timeline__header h5 {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #ffffff !important;
+  letter-spacing: normal !important;
+}
+
+.timeline__desc ul li {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #ffffff !important;
+  letter-spacing: normal !important;
+}
+
+
+/* Reduce spacing in timeline */
+.timeline__header {
+  margin-bottom: 0.2rem !important;
+}
+
+.timeline__header h3.item-title {
+  font-family: "Lora", serif !important;
+  font-size: 1.7rem !important;
+  line-height: 1.882 !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  color: #ffffff !important;
+  letter-spacing: normal !important;
+  margin-bottom: 0.2rem !important;
+}
+
+.timeline__timeframe {
+  margin-bottom: 0.2rem !important;
+  margin-top: 0 !important;
+}
+
+.timeline__header h5 {
+  margin-top: 0.2rem !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* Hide overlapping text on certificates, show only images and View Details button */
+.item-certificate__header,
+.item-certificate__desc {
+  display: none !important;
+}
+
+.item-certificate__link {
+  position: absolute !important;
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  left: auto !important;
+  transform: none !important;
+  border-radius: 12px !important;
+}
+
+
+/* Center align section headings */
+.heading-block {
+  text-align: center !important;
+}
+
+.section-heading {
+  text-align: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 3.2rem !important;
+  font-size: 2.6rem !important;
+  margin-bottom: 5rem !important;
+}
+
+.section-heading::before {
+  top: auto !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important;
+}
+
+
+/* Reduce section description font size */
+.section-desc {
+  font-size: 1.5rem !important;
+}
+
+
+/* Remove decorative lines and numbers from skills section */
+.item-service::before,
+.item-service::after {
+  display: none !important;
+}
+
+.services-list .item-service__content {
+  border-top: none !important;
+}
+
+.services-list .item-service__content::before {
+  display: none !important;
+}
+
+
+/* Add vertical line before skill card headings */
+.item-service__content h4.item-title {
+  position: relative !important;
+  padding-left: 2rem !important;
+}
+
+.item-service__content h4.item-title::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.5rem !important;
+  width: 4px !important;
+  height: 3rem !important;
+  background-color: #ffffff !important;
+  border-radius: 2px !important;
+}
