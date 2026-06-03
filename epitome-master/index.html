@@ -677,3 +677,60 @@
     </script>
 
 </body>
+yushinasare26" target="_blank" class="btn btn--primary full-width contact-popup-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Contact popup functionality
+        $(document).ready(function() {
+            $('#contact-me-btn').click(function(e) {
+                e.preventDefault();
+                $('#contact-popup').fadeIn(300);
+            });
+
+            $('.contact-popup-close, .contact-popup-overlay').click(function(e) {
+                if (e.target === this) {
+                    $('#contact-popup').fadeOut(300);
+                }
+            });
+
+            // Certificate lightbox functionality
+            $('.certificate-lightbox').click(function(e) {
+                e.preventDefault();
+                var imgSrc = $(this).attr('href');
+                var certTitle = $(this).data('certificate');
+                
+                var lightboxHtml = '<div class="certificate-lightbox-overlay">' +
+                    '<div class="certificate-lightbox-content">' +
+                    '<span class="certificate-lightbox-close">&times;</span>' +
+                    '<img src="' + imgSrc + '" alt="' + certTitle + '">' +
+                    '</div>' +
+                    '</div>';
+                
+                $('body').append(lightboxHtml);
+                $('.certificate-lightbox-overlay').fadeIn(300);
+                
+                $('.certificate-lightbox-close, .certificate-lightbox-overlay').click(function(e) {
+                    if (e.target === this) {
+                        $('.certificate-lightbox-overlay').fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
