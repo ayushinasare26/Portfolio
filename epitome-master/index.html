@@ -52,6 +52,7 @@
                 <li><a class="smoothscroll" href="#skills" title="skills">Skills</a></li>
                 <li><a class="smoothscroll" href="#certificates" title="certificates">Certificates</a></li>
                 <li><a class="smoothscroll" href="#works" title="projects">Projects</a></li>
+                <li><a class="smoothscroll" href="#contact" title="contact">Contact</a></li>
             </ul>
 
 
@@ -127,7 +128,7 @@
     
             <div class="row about-me__buttons">
                 <div class="column large-half tab-full" data-aos="fade-up">
-                    <a href="#contact-popup" class="btn btn--stroke full-width" id="contact-me-btn">Contact Me</a>
+                    <a href="#contact" class="btn btn--stroke full-width smoothscroll">Contact Me</a>
                 </div>
                 <div class="column large-half tab-full" data-aos="fade-up">
                     <a href="downloads/Ayushi_Nasare_Resume.pdf" download="Ayushi_Nasare_Resume.pdf" class="btn btn--primary full-width">Download CV</a>
@@ -569,64 +570,31 @@
 
     </div><!-- end photoSwipe background -->
 
-    <!-- Footer
+    <!-- contact
     ================================================== -->
-    <footer class="s-footer">
+    <section id="contact" class="s-contact ss-dark target-section">
         <div class="row">
-            <div class="column large-4 medium-12 footer-about">
-                <h3>Ayushi Nasare</h3>
-                <p>Full-Stack Developer & Computer Science Student</p>
-                <p>Passionate about creating innovative solutions through technology</p>
-            </div>
-
-            <div class="column large-4 medium-6 footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a class="smoothscroll" href="#intro">Home</a></li>
-                    <li><a class="smoothscroll" href="#about">About</a></li>
-                    <li><a class="smoothscroll" href="#education">Education</a></li>
-                    <li><a class="smoothscroll" href="#experience">Experience</a></li>
-                    <li><a class="smoothscroll" href="#skills">Skills</a></li>
-                    <li><a class="smoothscroll" href="#certificates">Certificates</a></li>
-                    <li><a class="smoothscroll" href="#works">Projects</a></li>
-                </ul>
-            </div>
-
-            <div class="column large-4 medium-6 footer-connect">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="https://github.com/ayushinasare26" target="_blank">GitHub</a></li>
-                    <li><a href="https://www.linkedin.com/in/ayushi-nasare-080a59320" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=aayushi26nasare@gmail.com" target="_blank">Email</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row footer-bottom">
             <div class="column large-full">
-                <p class="footer-copyright">© 2026 Ayushi Nasare. All rights reserved. | Built with passion and precision</p>
+                <div class="contact-box" data-aos="fade-up">
+                    <h2 class="contact-box__title">Contact</h2>
+                    <p class="contact-box__subtitle">Ready to collaborate on the next generation of smart applications?</p>
+                    <hr class="contact-box__divider">
+                    <div class="contact-box__links">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aayushi26nasare@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-box__link">
+                            <i class="fas fa-envelope" aria-hidden="true"></i> Email
+                        </a>
+                        <a href="https://github.com/ayushinasare26" target="_blank" rel="noopener noreferrer" class="contact-box__link">
+                            <i class="fas fa-code" aria-hidden="true"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/ayushi-nasare-080a59320" target="_blank" rel="noopener noreferrer" class="contact-box__link">
+                            <i class="fas fa-globe" aria-hidden="true"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <p class="contact-copyright">© 2026 Ayushi Nasare. All rights reserved. | Built with passion and precision</p>
             </div>
         </div>
-    </footer>
-
-    <!-- Contact Popup Modal -->
-    <div id="contact-popup" class="contact-popup-overlay">
-        <div class="contact-popup-content">
-            <span class="contact-popup-close">&times;</span>
-            <h2>Get In Touch</h2>
-            <div class="contact-popup-buttons">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aayushi26nasare@gmail.com" target="_blank" class="btn btn--primary full-width contact-popup-btn">
-                    <i class="fas fa-envelope"></i> Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/ayushi-nasare-080a59320" target="_blank" class="btn btn--primary full-width contact-popup-btn">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/ayushinasare26" target="_blank" class="btn btn--primary full-width contact-popup-btn">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </div>
+    </section>
 
 
     <!-- Java Script
@@ -636,75 +604,7 @@
     <script src="js/main.js"></script>
 
     <script>
-        // Contact popup functionality
         $(document).ready(function() {
-            $('#contact-me-btn').click(function(e) {
-                e.preventDefault();
-                $('#contact-popup').fadeIn(300);
-            });
-
-            $('.contact-popup-close, .contact-popup-overlay').click(function(e) {
-                if (e.target === this) {
-                    $('#contact-popup').fadeOut(300);
-                }
-            });
-
-            // Certificate lightbox functionality
-            $('.certificate-lightbox').click(function(e) {
-                e.preventDefault();
-                var imgSrc = $(this).attr('href');
-                var certTitle = $(this).data('certificate');
-                
-                var lightboxHtml = '<div class="certificate-lightbox-overlay">' +
-                    '<div class="certificate-lightbox-content">' +
-                    '<span class="certificate-lightbox-close">&times;</span>' +
-                    '<img src="' + imgSrc + '" alt="' + certTitle + '">' +
-                    '</div>' +
-                    '</div>';
-                
-                $('body').append(lightboxHtml);
-                $('.certificate-lightbox-overlay').fadeIn(300);
-                
-                $('.certificate-lightbox-close, .certificate-lightbox-overlay').click(function(e) {
-                    if (e.target === this) {
-                        $('.certificate-lightbox-overlay').fadeOut(300, function() {
-                            $(this).remove();
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-
-</body>
-yushinasare26" target="_blank" class="btn btn--primary full-width contact-popup-btn">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
-    <script>
-        // Contact popup functionality
-        $(document).ready(function() {
-            $('#contact-me-btn').click(function(e) {
-                e.preventDefault();
-                $('#contact-popup').fadeIn(300);
-            });
-
-            $('.contact-popup-close, .contact-popup-overlay').click(function(e) {
-                if (e.target === this) {
-                    $('#contact-popup').fadeOut(300);
-                }
-            });
-
             // Certificate lightbox functionality
             $('.certificate-lightbox').click(function(e) {
                 e.preventDefault();

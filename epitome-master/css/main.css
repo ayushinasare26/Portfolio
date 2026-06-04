@@ -3263,9 +3263,14 @@ input::-moz-focus-inner {
  *
  * ------------------------------------------------------------------- */
 .s-contact {
-  padding-top: 18.4rem;
-  padding-bottom: 6.4rem;
-  background-color: #050505;
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+  background-color: #000000 !important;
+}
+
+.s-contact .row {
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .contact-main a {
@@ -3392,10 +3397,6 @@ input::-moz-focus-inner {
 }
 
 @media screen and (max-width:800px) {
-  .s-contact {
-    padding-top: 16rem;
-  }
-
   .contact-email {
     font-size: 9vw;
   }
@@ -3706,7 +3707,6 @@ html[data-useragent*='rv:11.0'] .ss-go-top::after {
 .item-certificate__content {
     background-color: #f8f8f8;
     border: 1px solid #e8e8e8;
-    border-radius: 8px;
     padding: 3rem;
     height: 100%;
     transition: all 0.3s ease-in-out;
@@ -3828,7 +3828,6 @@ html[data-useragent*='rv:11.0'] .ss-go-top::after {
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
-    border-radius: 8px;
     z-index: 1;
 }
 
@@ -3928,7 +3927,6 @@ html[data-useragent*='rv:11.0'] .ss-go-top::after {
 .item-project__content {
     background-color: #1f1f1f;
     border: 1px solid #2a2a2a;
-    border-radius: 8px;
     padding: 3rem;
     height: 100%;
     transition: all 0.3s ease-in-out;
@@ -4079,7 +4077,6 @@ p, h1, h2, h3, h4, h5, h6, .section-desc, .item-title {
 .item-certificate__content {
   background-color: #000000 !important;
   border: 2px solid #333333;
-  border-radius: 8px;
   padding: 3rem;
   position: relative;
   overflow: hidden;
@@ -4143,7 +4140,6 @@ p, h1, h2, h3, h4, h5, h6, .section-desc, .item-title {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  border-radius: 4px;
   transition: all 0.3s ease;
   text-decoration: none;
 }
@@ -4182,83 +4178,170 @@ p, h1, h2, h3, h4, h5, h6, .section-desc, .item-title {
 
 
 /* ===================================================================
- * # Footer Styling
+ * # Shared box corner radius (certificates, projects, contact, CTAs)
  * ------------------------------------------------------------------- */
 
-.s-footer {
-  background-color: #1a1a1a !important;
-  padding: 6rem 0 2rem;
-  color: #ffffff;
+:root {
+  --box-border-radius: 2.4rem;
+  --btn-border-radius: 1.6rem;
 }
 
-.footer-about h3 {
-  font-size: 2.4rem;
-  margin-bottom: 1.5rem;
-  color: #ffffff !important;
+@media screen and (max-width: 800px) {
+  :root {
+    --box-border-radius: 2rem;
+    --btn-border-radius: 1.4rem;
+  }
 }
 
-.footer-about p {
-  color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 1.5rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
+.item-certificate__content,
+.item-project__content,
+.contact-box {
+  border-radius: var(--box-border-radius) !important;
 }
 
-.footer-links h4,
-.footer-connect h4 {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  color: #ffffff !important;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
+.about-me__buttons .btn {
+  border-radius: var(--btn-border-radius) !important;
 }
 
-.footer-links ul,
-.footer-connect ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.item-certificate__content--with-bg::before {
+  border-radius: var(--box-border-radius);
 }
 
-.footer-links ul li,
-.footer-connect ul li {
-  margin-bottom: 1rem;
-  padding-left: 0;
+.item-certificate__link {
+  border-radius: var(--box-border-radius) !important;
 }
 
-.footer-links ul li a,
-.footer-connect ul li a {
-  color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 1.5rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border-bottom: none;
-}
+/* ===================================================================
+ * # Contact Section (reference design)
+ * ------------------------------------------------------------------- */
 
-.footer-links ul li a:hover,
-.footer-connect ul li a:hover {
-  color: #cf1767 !important;
-  padding-left: 5px;
-}
-
-.footer-bottom {
-  margin-top: 4rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-copyright {
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 7.2rem 5.6rem 6.8rem;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5) !important;
-  font-size: 1.4rem;
-  margin: 0;
+  background-color: #111111;
+  border: 1px solid #2a2a2a;
+  box-sizing: border-box;
+}
+
+.contact-box__title {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 5.6rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff !important;
+  margin: 0 0 2.4rem !important;
+  width: 100%;
+}
+
+.contact-box__subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #cccccc !important;
+  max-width: 52rem;
+  margin: 0 auto 4.8rem !important;
+}
+
+.contact-box__divider {
+  width: 88%;
+  max-width: 72rem;
+  height: 1px;
+  margin: 0 auto 4.8rem;
+  border: none;
+  background-color: #333333;
+}
+
+.contact-box__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.contact-box__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.1rem 2.8rem;
+  border-radius: 1000px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent !important;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  transition: border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.contact-box__link:hover,
+.contact-box__link:focus,
+.contact-box__link:active {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: transparent !important;
+  opacity: 1;
+}
+
+.contact-box__link i {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.contact-copyright {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 5rem 0 0;
 }
 
 @media screen and (max-width:800px) {
-  .footer-about,
-  .footer-links,
-  .footer-connect {
-    margin-bottom: 3rem;
+  .s-contact {
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+  }
+
+  .contact-box {
+    padding: 5.6rem 2.8rem 5.2rem;
+  }
+
+  .contact-box__title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-box__subtitle {
+    font-size: 1.55rem;
+    margin-bottom: 3.6rem;
+  }
+
+  .contact-box__divider {
+    width: 90%;
+    margin-bottom: 3.6rem;
+  }
+
+  .contact-box__links {
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .contact-box__link {
+    width: 100%;
+    max-width: 28rem;
   }
 }
 
@@ -4292,7 +4375,6 @@ p, h1, h2, h3, h4, h5, h6, .section-desc, .item-title {
 .item-project__content {
   background-color: #1a1a1a !important;
   border: 2px solid #333333;
-  border-radius: 8px;
   padding: 3rem;
   transition: all 0.3s ease;
 }
