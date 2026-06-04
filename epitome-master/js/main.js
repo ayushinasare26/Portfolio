@@ -286,3 +286,110 @@
     })();
 
 })(jQuery);
+
+/* ===================================================================
+ * Starfield Canvas Animation
+ * ------------------------------------------------------------------- */
+(function() {
+    const canvas = document.getElementById('starfield');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let stars = [];
+    const numStars = 800; // Dense stars
+
+    let mouse = { x: -1000, y: -1000 };
+    const repelRadius = 150;
+    const pinkColor = '#cf1767';
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        initStars();
+    }
+
+    function initStars() {
+        stars = [];
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 3,
+                vy: (Math.random() - 0.5) * 3,
+                radius: Math.random() * 1.5 + 0.5,
+                baseColor: `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`,
+                color: ''
+            });
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < numStars; i++) {
+            let star = stars[i];
+
+            // Add slight random wandering
+            star.vx += (Math.random() - 0.5) * 0.2;
+            star.vy += (Math.random() - 0.5) * 0.2;
+            
+            // Limit maximum speed
+            const maxSpeed = 3;
+            if (star.vx > maxSpeed) star.vx = maxSpeed;
+            if (star.vx < -maxSpeed) star.vx = -maxSpeed;
+            if (star.vy > maxSpeed) star.vy = maxSpeed;
+            if (star.vy < -maxSpeed) star.vy = -maxSpeed;
+
+            // Update position
+            star.x += star.vx;
+            star.y += star.vy;
+
+            // Wrap around edges
+            if (star.x < 0) star.x = width;
+            if (star.x > width) star.x = 0;
+            if (star.y < 0) star.y = height;
+            if (star.y > height) star.y = 0;
+
+            // Mouse interaction
+            let dx = mouse.x - star.x;
+            let dy = mouse.y - star.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            star.color = star.baseColor;
+
+            if (distance < repelRadius) {
+                // Turn pink
+                star.color = pinkColor;
+                
+                // Repel
+                let force = (repelRadius - distance) / repelRadius;
+                star.x -= (dx / distance) * force * 5;
+                star.y -= (dy / distance) * force * 5;
+            }
+
+            // Draw star
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fillStyle = star.color;
+            ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+    window.addEventListener('mouseout', () => {
+        mouse.x = -1000;
+        mouse.y = -1000;
+    });
+
+    resize();
+    animate();
+})();
