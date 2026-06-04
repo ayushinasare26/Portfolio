@@ -317,8 +317,8 @@
             stars.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 3,
-                vy: (Math.random() - 0.5) * 3,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
                 radius: Math.random() * 1.5 + 0.5,
                 baseColor: `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`,
                 color: ''
@@ -333,11 +333,11 @@
             let star = stars[i];
 
             // Add slight random wandering
-            star.vx += (Math.random() - 0.5) * 0.2;
-            star.vy += (Math.random() - 0.5) * 0.2;
+            star.vx += (Math.random() - 0.5) * 0.02;
+            star.vy += (Math.random() - 0.5) * 0.02;
             
             // Limit maximum speed
-            const maxSpeed = 3;
+            const maxSpeed = 0.4;
             if (star.vx > maxSpeed) star.vx = maxSpeed;
             if (star.vx < -maxSpeed) star.vx = -maxSpeed;
             if (star.vy > maxSpeed) star.vy = maxSpeed;
@@ -347,9 +347,16 @@
             star.x += star.vx;
             star.y += star.vy;
 
-            // Wrap around edges
-            if (star.x < 0) star.x = width;
-            if (star.x > width) star.x = 0;
+            // Bounce off edges (left to right, right to left)
+            if (star.x < 0) {
+                star.x = 0;
+                star.vx *= -1;
+            }
+            if (star.x > width) {
+                star.x = width;
+                star.vx *= -1;
+            }
+            // Still wrap vertically to keep the flow
             if (star.y < 0) star.y = height;
             if (star.y > height) star.y = 0;
 
