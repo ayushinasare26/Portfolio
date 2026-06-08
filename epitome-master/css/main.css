@@ -4807,3 +4807,92 @@ body > .pswp {
   background-color: rgba(0, 0, 0, 0.82) !important;
   backdrop-filter: blur(8px);
 }
+
+
+/* ===================================================================
+ * # Uniform spacing between main sections (matches Skills → Certificates)
+ * ------------------------------------------------------------------- */
+
+:root {
+  --section-stack-gap: 6rem;
+}
+
+#about.s-about {
+  padding-top: 10rem !important;
+  padding-bottom: 0 !important;
+}
+
+#education.s-about,
+#experience.s-about,
+#skills.s-services,
+#certificates.s-certificates,
+#works.s-works {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: var(--section-stack-gap) !important;
+}
+
+#about .section-heading,
+#education .section-heading,
+#experience .section-heading,
+#skills .section-heading,
+#certificates .section-heading,
+#works .section-heading {
+  margin-top: 0 !important;
+  margin-bottom: 2.4rem !important;
+  padding-bottom: 2.4rem !important;
+}
+
+#education .about-experience__timeline,
+#experience .about-experience__timeline {
+  margin-top: 2.4rem !important;
+}
+
+#skills .services-list {
+  margin-top: 2.4rem !important;
+}
+
+#skills .item-service {
+  min-height: 0 !important;
+  margin-bottom: 1.2rem !important;
+}
+
+#skills .item-service__content {
+  padding-top: 0 !important;
+}
+
+#certificates .certificates-list {
+  margin-top: 2.4rem !important;
+}
+
+#works .projects-list {
+  margin-top: 2.4rem !important;
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    --section-stack-gap: 4.8rem;
+  }
+
+  #about.s-about {
+    padding-top: 8rem !important;
+  }
+
+  #about .section-heading,
+  #education .section-heading,
+  #experience .section-heading,
+  #skills .section-heading,
+  #certificates .section-heading,
+  #works .section-heading {
+    margin-bottom: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  #education .about-experience__timeline,
+  #experience .about-experience__timeline,
+  #skills .services-list,
+  #certificates .certificates-list,
+  #works .projects-list {
+    margin-top: 2rem !important;
+  }
+}
