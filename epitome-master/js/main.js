@@ -26,8 +26,7 @@
         
         $("html").addClass('ss-preload');
 
-        $WIN.on('load', function() {
-
+        var hideLoader = function() {
             //force page scroll position to top at page refresh
             $('html, body').animate({ scrollTop: 0 }, 'normal');
 
@@ -40,8 +39,14 @@
             // for hero content animations 
             $("html").removeClass('ss-preload');
             $("html").addClass('ss-loaded');
-        
-        });
+        };
+
+        if (document.readyState === 'complete') {
+            hideLoader();
+        } else {
+            $WIN.on('load', hideLoader);
+            setTimeout(hideLoader, 2000); // Safety fallback
+        }
     };
 
 
@@ -103,27 +108,64 @@
         var sections = $(".target-section"),
             navigation_links = $(".header-main-nav li a");
 
-        sections.waypoint( {
-
-            handler: function(direction) {
-
-                var active_section;
-
-                active_section = $('section#' + this.element.id);
-
-                if (direction === "up") active_section = active_section.prevAll(".target-section").first();
-
-                var active_link = $('.header-main-nav li a[href="#' + active_section.attr("id") + '"]');
-
+        var setActiveNav = function(sectionId) {
+            if (!sectionId) return;
+            var active_link = $('.header-main-nav li a[href="#' + sectionId + '"]');
+            if (active_link.length && !active_link.parent().hasClass('current')) {
                 navigation_links.parent().removeClass("current");
                 active_link.parent().addClass("current");
+            }
+        };
 
-            },
+        var updateActiveSection = function() {
+            var scrollPos = $WIN.scrollTop();
+            var winHeight = $WIN.height();
+            var docHeight = $(document).height();
 
-            offset: '25%'
+            // When scrolled at or near the bottom of page, always highlight the last section (#contact)
+            if (scrollPos + winHeight >= docHeight - 100) {
+                var lastSectionId = sections.last().attr("id");
+                setActiveNav(lastSectionId);
+                return;
+            }
 
+            // When at the very top, activate first section (#intro)
+            if (scrollPos <= 80) {
+                var firstSectionId = sections.first().attr("id");
+                setActiveNav(firstSectionId);
+                return;
+            }
+
+            // Determine which section currently occupies the viewport
+            var currentSectionId = null;
+            sections.each(function() {
+                var $sec = $(this);
+                var top = $sec.offset().top - (winHeight * 0.35);
+                var bottom = top + $sec.outerHeight();
+
+                if (scrollPos >= top && scrollPos < bottom) {
+                    currentSectionId = $sec.attr("id");
+                }
+            });
+
+            if (currentSectionId) {
+                setActiveNav(currentSectionId);
+            }
+        };
+
+        var isTicking = false;
+        $WIN.on('scroll.navHighlight resize.navHighlight', function() {
+            if (!isTicking) {
+                window.requestAnimationFrame(function() {
+                    updateActiveSection();
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
         });
-        
+
+        updateActiveSection();
+
     };
 
 
@@ -222,8 +264,16 @@
             var target = this.hash,
             $target    = $(target);
             
-                e.preventDefault();
-                e.stopPropagation();
+            if (!$target.length) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Immediately highlight clicked link in nav
+            if ($(this).closest('.header-main-nav').length) {
+                $('.header-main-nav li').removeClass('current');
+                $(this).parent().addClass('current');
+            }
 
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top
@@ -301,7 +351,6 @@
 
     let mouse = { x: -1000, y: -1000 };
     const repelRadius = 150;
-    const pinkColor = '#cf1767';
 
     function resize() {
         width = window.innerWidth;
@@ -314,13 +363,15 @@
     function initStars() {
         stars = [];
         for (let i = 0; i < numStars; i++) {
+            const alpha = Math.random() * 0.35 + 0.10; // Soft brightness
             stars.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                radius: Math.random() * 1.5 + 0.5,
-                baseColor: `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`,
+                vx: (Math.random() - 0.5) * 0.16, // Slightly increased drift speed
+                vy: (Math.random() - 0.5) * 0.16,
+                radius: Math.random() * 1.2 + 0.6, // Slightly bigger stars
+                alpha: alpha,
+                baseColor: `rgba(255, 255, 255, ${alpha.toFixed(2)})`,
                 color: ''
             });
         }
@@ -332,12 +383,12 @@
         for (let i = 0; i < numStars; i++) {
             let star = stars[i];
 
-            // Add slight random wandering
-            star.vx += (Math.random() - 0.5) * 0.02;
-            star.vy += (Math.random() - 0.5) * 0.02;
+            // Gentle random wandering
+            star.vx += (Math.random() - 0.5) * 0.005;
+            star.vy += (Math.random() - 0.5) * 0.005;
             
             // Limit maximum speed
-            const maxSpeed = 0.4;
+            const maxSpeed = 0.16;
             if (star.vx > maxSpeed) star.vx = maxSpeed;
             if (star.vx < -maxSpeed) star.vx = -maxSpeed;
             if (star.vy > maxSpeed) star.vy = maxSpeed;
@@ -368,13 +419,13 @@
             star.color = star.baseColor;
 
             if (distance < repelRadius) {
-                // Turn pink
-                star.color = pinkColor;
+                // Soft pink glow near cursor
+                star.color = `rgba(207, 23, 103, ${Math.min(star.alpha + 0.25, 0.65)})`;
                 
-                // Repel
+                // Repel gently
                 let force = (repelRadius - distance) / repelRadius;
-                star.x -= (dx / distance) * force * 5;
-                star.y -= (dy / distance) * force * 5;
+                star.x -= (dx / distance) * force * 2.0;
+                star.y -= (dy / distance) * force * 2.0;
             }
 
             // Draw star

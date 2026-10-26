@@ -1,0 +1,9 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Ayushi Nasare Portfolio",
+  "scripts": {
+    "dev": "python -m http.server 3000 --directory epitome-master",
+    "start": "python -m http.server 3000 --directory epitome-master"
+  }
+}
